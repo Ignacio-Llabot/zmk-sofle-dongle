@@ -73,6 +73,16 @@
     };
 
     behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <150>;
+            bindings = <&kp>, <&kp>;
+        };
+
         rsr_vol: rsr_vol {
             compatible = "zmk,behavior-runtime-sensor-rotate";
             #sensor-binding-cells = <0>;
@@ -133,25 +143,25 @@
         layer_1 {
             bindings = <
             LAYOUT(
-            /*+------------+------------+---------+---------+---------+---------+               +---------+               +---------+---------+---------+---------+---------+---------+ */
-            /*| GRAVE      | trans      | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &kp GRAVE,   &trans,      &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+------------+------------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| TILDE      | trans      | trans   | trans   | trans   | trans   |     | trans   | trans   | trans   |     | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &kp TILDE,   &trans,      &trans,   &trans,   &trans,   &trans,         &trans,   &trans,   &trans,         &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+------------+------------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| trans      | trans      | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,      &trans,      &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+------------+------------+---------+---------+---------+---------+     +---------+---------+               +---------+---------+---------+---------+---------+---------+ */
-            /*| trans      | trans      | trans   | trans   | trans   | trans   |     | trans   |                         | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,      &trans,      &trans,   &trans,   &trans,   &trans,         &trans,                             &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+------------+------------+---------+---------+---------+---------+     +---------+                         +---------+---------+---------+---------+---------+---------+ */
-            /*                          | trans   | trans   | trans   |                                                             | trans   | trans   | trans   | */
-                                          &trans,   &trans,   &trans,                                                                 &trans,   &trans,   &trans,
-            /*                          +---------+---------+---------+---------+     +---------+         +---------+     +---------+---------+---------+---------+ */
-            /*                                                        | trans   |     | trans   |         | trans   |     | trans   | */
-                                                                        &trans,         &trans,             &trans,         &trans
-            /*                                                        +---------+     +---------+         +---------+     +---------+ */
+            /*+--------------+--------------+--------------+--------------+--------------+---------+               +---------+               +---------+---------+---------+---------+---------+---------+ */
+            /*| GRAVE        | trans        | trans        | trans        | trans        | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
+                &kp GRAVE,     &trans,        &trans,        &trans,        &trans,        &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*+--------------+--------------+--------------+--------------+--------------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
+            /*| TILDE        | trans        | trans        | trans        | trans        | trans   |     | trans   | trans   | trans   |     | trans   | trans   | trans   | trans   | trans   | trans   | */
+                &kp TILDE,     &trans,        &trans,        &trans,        &trans,        &trans,         &trans,   &trans,   &trans,         &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*+--------------+--------------+--------------+--------------+--------------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
+            /*| trans        | GUI/A        | ALT/S        | CTL/D        | SFT/F        | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
+                &trans,        &hm LGUI A,    &hm LALT S,    &hm LCTRL D,   &hm LSHFT F,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*+--------------+--------------+--------------+--------------+--------------+---------+     +---------+---------+               +---------+---------+---------+---------+---------+---------+ */
+            /*| trans        | trans        | trans        | trans        | trans        | trans   |     | trans   |                         | trans   | trans   | trans   | trans   | trans   | trans   | */
+                &trans,        &trans,        &trans,        &trans,        &trans,        &trans,         &trans,                             &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*+--------------+--------------+--------------+--------------+--------------+---------+     +---------+                         +---------+---------+---------+---------+---------+---------+ */
+            /*                              | trans        | trans        | trans        |                                                             | trans   | trans   | trans   | */
+                                              &trans,        &trans,        &trans,                                                                      &trans,   &trans,   &trans,
+            /*                              +--------------+--------------+--------------+---------+     +---------+         +---------+     +---------+---------+---------+---------+ */
+            /*                                                                           | trans   |     | trans   |         | trans   |     | trans   | */
+                                                                                           &trans,         &trans,             &trans,         &trans
+            /*                                                                           +---------+     +---------+         +---------+     +---------+ */
             )
             >;
 
@@ -163,22 +173,22 @@
         layer_2 {
             bindings = <
             LAYOUT(
-            /*+---------+---------+---------+---------+---------+---------+               +---------+               +---------+---------+---------+---------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   | trans   | trans   |     | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,   &trans,   &trans,         &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+               +---------+---------+---------+---------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   |                         | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,                             &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+                         +---------+---------+---------+---------+---------+---------+ */
-            /*                    | trans   | trans   | trans   |                                                             | trans   | trans   | trans   | */
-                                    &trans,   &trans,   &trans,                                                                 &trans,   &trans,   &trans,
-            /*                    +---------+---------+---------+---------+     +---------+         +---------+     +---------+---------+---------+---------+ */
+            /*+---------+---------+---------+---------+---------+---------+               +---------+               +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans        | trans        | trans        | trans        | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   | trans   | trans   |     | trans   | trans        | trans        | trans        | trans        | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,   &trans,   &trans,         &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | trans   | SFT/J        | CTL/K        | ALT/L        | GUI/;        | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &hm RSHFT J,   &hm RCTRL K,   &hm RALT L,    &hm RGUI SEMI, &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+               +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   |                         | trans   | trans        | trans        | trans        | trans        | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,                             &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +---------+                         +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*                    | trans   | trans   | trans   |                                                             | trans        | trans        | trans        | */
+                                    &trans,   &trans,   &trans,                                                                 &trans,        &trans,        &trans,
+            /*                    +---------+---------+---------+---------+     +---------+         +---------+     +---------+--------------+--------------+--------------+ */
             /*                                                  | trans   |     | trans   |         | trans   |     | trans   | */
                                                                   &trans,         &trans,             &trans,         &trans
             /*                                                  +---------+     +---------+         +---------+     +---------+ */
@@ -193,25 +203,25 @@
         layer_3 {
             bindings = <
             LAYOUT(
-            /*+---------+---------+---------+---------+---------+---------+               +---------+               +---------+---------+---------+---------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   | trans   | trans   |     | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,   &trans,   &trans,         &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+               +---------+---------+---------+---------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   |                         | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,                             &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+                         +---------+---------+---------+---------+---------+---------+ */
-            /*                    | trans   | trans   | trans   |                                                             | trans   | trans   | trans   | */
-                                    &trans,   &trans,   &trans,                                                                 &trans,   &trans,   &trans,
-            /*                    +---------+---------+---------+---------+     +---------+         +---------+     +---------+---------+---------+---------+ */
-            /*                                                  | trans   |     | trans   |         | trans   |     | trans   | */
+            /*+---------+---------+---------+---------+---------+---------+               +---------+               +------------+---------+---------+-----------+---------+---------+ */
+            /*| trans   | F1      | F2      | F3      | F4      | F5      |               | trans   |               | F6         | F7      | F8      | F9        | F10     | trans   | */
+                &trans,   &kp F1,   &kp F2,   &kp F3,   &kp F4,   &kp F5,                   &trans,                   &kp F6,      &kp F7,   &kp F8,   &kp F9,     &kp F10,  &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +------------+---------+---------+-----------+---------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   | trans   | trans   |     | F11        | F12     | UP      | trans     | trans   | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,   &trans,   &trans,         &kp F11,     &kp F12,  &kp UP,   &trans,     &trans,   &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +------------+---------+---------+-----------+---------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | WIN+TAB    | LEFT    | DOWN    | RIGHT     | trans   | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &kp LG(TAB), &kp LEFT, &kp DOWN, &kp RIGHT,  &trans,   &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+               +------------+---------+---------+-----------+---------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   |                         | trans      | trans   | trans   | trans     | trans   | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,                             &trans,      &trans,   &trans,   &trans,     &trans,   &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +---------+                         +------------+---------+---------+-----------+---------+---------+ */
+            /*                    | trans   | trans   | trans   |                                                                | trans   | trans   | trans     | */
+                                    &trans,   &trans,   &trans,                                                                    &trans,   &trans,   &trans,
+            /*                    +---------+---------+---------+---------+     +---------+         +---------+     +------------+---------+---------+-----------+ */
+            /*                                                  | trans   |     | trans   |         | trans   |     | trans      | */
                                                                   &trans,         &trans,             &trans,         &trans
-            /*                                                  +---------+     +---------+         +---------+     +---------+ */
+            /*                                                  +---------+     +---------+         +---------+     +------------+ */
             )
             >;
 
