@@ -173,29 +173,29 @@
         layer_2 {
             bindings = <
             LAYOUT(
-            /*+---------+---------+---------+---------+---------+---------+               +---------+               +---------+--------------+--------------+--------------+--------------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans        | trans        | trans        | trans        | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+--------------+--------------+--------------+--------------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   | trans   | trans   |     | trans   | trans        | trans        | trans        | trans        | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,   &trans,   &trans,         &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+--------------+--------------+--------------+--------------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | trans   | SFT/J        | CTL/K        | ALT/L        | GUI/;        | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &hm RSHFT J,   &hm RCTRL K,   &hm RALT L,    &hm RGUI SEMI, &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+---------+               +---------+--------------+--------------+--------------+--------------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   |                         | trans   | trans        | trans        | trans        | trans        | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,                             &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
-            /*+---------+---------+---------+---------+---------+---------+     +---------+                         +---------+--------------+--------------+--------------+--------------+---------+ */
-            /*                    | trans   | trans   | trans   |                                                             | trans        | trans        | trans        | */
-                                    &trans,   &trans,   &trans,                                                                 &trans,        &trans,        &trans,
-            /*                    +---------+---------+---------+---------+     +---------+         +---------+     +---------+--------------+--------------+--------------+ */
-            /*                                                  | trans   |     | trans   |         | trans   |     | trans   | */
-                                                                  &trans,         &trans,             &trans,         &trans
-            /*                                                  +---------+     +---------+         +---------+     +---------+ */
+            /*+---------+---------+---------+---------+---------+---------+                 +---------+               +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |                 | trans   |               | trans   | trans        | trans        | trans        | trans        | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                     &trans,                   &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +-----------+---------+---------+     +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans     | trans   | trans   |     | trans   | trans        | trans        | trans        | trans        | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,     &trans,   &trans,         &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +-----------+---------+---------+     +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |                 | trans   |               | trans   | SFT/J        | CTL/K        | ALT/L        | GUI/;        | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                     &trans,                   &trans,   &hm RSHFT J,   &hm RCTRL K,   &hm RALT L,    &hm RGUI SEMI, &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +-----------+---------+               +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | ZOOM0     |                         | trans   | trans        | trans        | trans        | trans        | trans   | */
+                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &kp LC(N0),                           &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
+            /*+---------+---------+---------+---------+---------+---------+     +-----------+                         +---------+--------------+--------------+--------------+--------------+---------+ */
+            /*                    | trans   | trans   | trans   |                                                               | trans        | trans        | trans        | */
+                                    &trans,   &trans,   &trans,                                                                   &trans,        &trans,        &trans,
+            /*                    +---------+---------+---------+---------+     +-----------+         +---------+     +---------+--------------+--------------+--------------+ */
+            /*                                                  | trans   |     | trans     |         | trans   |     | trans   | */
+                                                                  &trans,         &trans,               &trans,         &trans
+            /*                                                  +---------+     +-----------+         +---------+     +---------+ */
             )
             >;
 
-            sensor-bindings = <&rsr_vol &rsr_trans>;
+            sensor-bindings = <&inc_dec_kp LC(EQUAL) LC(MINUS) &rsr_trans>;
 
             display-name = "right";
         };
