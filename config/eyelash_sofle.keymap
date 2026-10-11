@@ -137,11 +137,11 @@
             /*| GRAVE      | trans      | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
                 &kp GRAVE,   &trans,      &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
             /*+------------+------------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| trans      | GRAVE      | trans   | trans   | trans   | trans   |     | trans   | trans   | trans   |     | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,      &kp GRAVE,   &trans,   &trans,   &trans,   &trans,         &trans,   &trans,   &trans,         &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*| TILDE      | trans      | trans   | trans   | trans   | trans   |     | trans   | trans   | trans   |     | trans   | trans   | trans   | trans   | trans   | trans   | */
+                &kp TILDE,   &trans,      &trans,   &trans,   &trans,   &trans,         &trans,   &trans,   &trans,         &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
             /*+------------+------------+---------+---------+---------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| trans      | TILDE      | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,      &kp TILDE,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*| trans      | trans      | trans   | trans   | trans   | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
+                &trans,      &trans,      &trans,   &trans,   &trans,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
             /*+------------+------------+---------+---------+---------+---------+     +---------+---------+               +---------+---------+---------+---------+---------+---------+ */
             /*| trans      | trans      | trans   | trans   | trans   | trans   |     | trans   |                         | trans   | trans   | trans   | trans   | trans   | trans   | */
                 &trans,      &trans,      &trans,   &trans,   &trans,   &trans,         &trans,                             &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
