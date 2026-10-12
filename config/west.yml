@@ -14,13 +14,16 @@ manifest:
       url-base: https://github.com/cormoran
     - name: a741725193
       url-base: https://github.com/a741725193
+    - name: ignacio-llabot
+      url-base: https://github.com/Ignacio-Llabot
   projects:
     - name: mario-peripheral-animation
       remote: gpeye
       revision: main
+    # Fork of cormoran/zmk (v0.3-branch+dya) with extra RGB underglow effects
     - name: zmk
-      remote: cormoran
-      revision: v0.3-branch+dya
+      remote: ignacio-llabot
+      revision: v0.3-branch+dya+rgb
       import: app/west.yml
     - name: zmk-behavior-runtime-sensor-rotate
       remote: cormoran
