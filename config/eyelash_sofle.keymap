@@ -207,14 +207,14 @@
             /*| trans   | F1      | F2      | F3      | F4      | F5      |               | trans   |               | F6         | F7      | F8      | F9        | F10     | trans   | */
                 &trans,   &kp F1,   &kp F2,   &kp F3,   &kp F4,   &kp F5,                   &trans,                   &kp F6,      &kp F7,   &kp F8,   &kp F9,     &kp F10,  &trans,
             /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +------------+---------+---------+-----------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   | trans   | trans   |     | F11        | F12     | UP      | trans     | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,   &trans,   &trans,         &kp F11,     &kp F12,  &kp UP,   &trans,     &trans,   &trans,
+            /*| trans   | RGB TOG | RGB EFF | RGB EFR | SPD UP  | SPD DN  |     | trans   | trans   | trans   |     | F11        | F12     | UP      | trans     | trans   | trans   | */
+                &trans,   &rgb_ug RGB_TOG, &rgb_ug RGB_EFF, &rgb_ug RGB_EFR, &rgb_ug RGB_SPI, &rgb_ug RGB_SPD, &trans,   &trans,   &trans,   &trans,         &kp F11,     &kp F12,  &kp UP,   &trans,     &trans,   &trans,
             /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +------------+---------+---------+-----------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |               | trans   |               | WIN+TAB    | LEFT    | DOWN    | RIGHT     | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                   &trans,                   &kp LG(TAB), &kp LEFT, &kp DOWN, &kp RIGHT,  &trans,   &trans,
+            /*| trans   | HUE UP  | HUE DN  | SAT UP  | SAT DN  | trans   |               | trans   |               | WIN+TAB    | LEFT    | DOWN    | RIGHT     | trans   | trans   | */
+                &trans,   &rgb_ug RGB_HUI, &rgb_ug RGB_HUD, &rgb_ug RGB_SAI, &rgb_ug RGB_SAD, &trans,                   &trans,                   &kp LG(TAB), &kp LEFT, &kp DOWN, &kp RIGHT,  &trans,   &trans,
             /*+---------+---------+---------+---------+---------+---------+     +---------+---------+               +------------+---------+---------+-----------+---------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans   |                         | trans      | trans   | trans   | trans     | trans   | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,                             &trans,      &trans,   &trans,   &trans,     &trans,   &trans,
+            /*| trans   | BRT UP  | BRT DN  | trans   | trans   | trans   |     | trans   |                         | trans      | trans   | trans   | trans     | trans   | trans   | */
+                &trans,   &rgb_ug RGB_BRI, &rgb_ug RGB_BRD, &trans,   &trans,   &trans,         &trans,                             &trans,      &trans,   &trans,   &trans,     &trans,   &trans,
             /*+---------+---------+---------+---------+---------+---------+     +---------+                         +------------+---------+---------+-----------+---------+---------+ */
             /*                    | trans   | trans   | trans   |                                                                | trans   | trans   | trans     | */
                                     &trans,   &trans,   &trans,                                                                    &trans,   &trans,   &trans,
