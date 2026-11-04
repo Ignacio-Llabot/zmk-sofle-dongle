@@ -19,6 +19,28 @@
 ) \
     k00 k01 k02 k03 k04 k05 k06 k07 k08 k09 k10 k11 k12 k13 k14 k15 k16 k17 k18 k19 k20 k21 k22 k23 k24 k25 k26 k27 k28 k29 k30 k31 k32 k33 k34 k35 k36 k37 k38 k39 k40 k41 k42 k43 k44 k45 k46 k47 k48 k49 k50 k51 k52 k53 k54 k55 k56 k57 k58 k59 k60 k61 k62 k63
 
+// Caracteres en espanol con Windows en ingles (US): se escriben con codigos Alt
+// (Alt + 4 digitos del teclado numerico). Requiere Bloq Num activado en Windows.
+// Tiempos cortos para que la macro termine antes de soltar la tecla: el mod-morph
+// solo oculta el Shift mientras la tecla esta apretada.
+#define ALT_CODE(name, a, b, c, d) \
+    ZMK_MACRO(name, \
+        wait-ms = <2>; \
+        tap-ms = <2>; \
+        bindings = <&macro_press &kp LALT>, \
+                   <&macro_tap &kp KP_N##a &kp KP_N##b &kp KP_N##c &kp KP_N##d>, \
+                   <&macro_release &kp LALT>; \
+    )
+
+// Minuscula sola, mayuscula con Shift
+#define ES_CHAR(name, lower, upper) \
+    name: name { \
+        compatible = "zmk,behavior-mod-morph"; \
+        #binding-cells = <0>; \
+        bindings = <&lower>, <&upper>; \
+        mods = <(MOD_LSFT|MOD_RSFT)>; \
+    };
+
 / {
     zip_scroll_scaler: zip_scroll_scaler {
         compatible = "zmk,input-processor-scaler";
@@ -70,6 +92,23 @@
 
             label = "SHIFT_MB3";
         };
+
+        ALT_CODE(alt_a_min, 0, 2, 2, 5)   // á
+        ALT_CODE(alt_a_may, 0, 1, 9, 3)   // Á
+        ALT_CODE(alt_e_min, 0, 2, 3, 3)   // é
+        ALT_CODE(alt_e_may, 0, 2, 0, 1)   // É
+        ALT_CODE(alt_i_min, 0, 2, 3, 7)   // í
+        ALT_CODE(alt_i_may, 0, 2, 0, 5)   // Í
+        ALT_CODE(alt_o_min, 0, 2, 4, 3)   // ó
+        ALT_CODE(alt_o_may, 0, 2, 1, 1)   // Ó
+        ALT_CODE(alt_u_min, 0, 2, 5, 0)   // ú
+        ALT_CODE(alt_u_may, 0, 2, 1, 8)   // Ú
+        ALT_CODE(alt_ue_min, 0, 2, 5, 2)  // ü
+        ALT_CODE(alt_ue_may, 0, 2, 2, 0)  // Ü
+        ALT_CODE(alt_n_min, 0, 2, 4, 1)   // ñ
+        ALT_CODE(alt_n_may, 0, 2, 0, 9)   // Ñ
+        ALT_CODE(es_iexcl, 0, 1, 6, 1)    // ¡
+        ALT_CODE(es_iquest, 0, 1, 9, 1)   // ¿
     };
 
     behaviors {
@@ -97,6 +136,14 @@
             #binding-cells = <1>;
             display-name = "ESP32 Msg";
         };
+
+        ES_CHAR(es_a, alt_a_min, alt_a_may)
+        ES_CHAR(es_e, alt_e_min, alt_e_may)
+        ES_CHAR(es_i, alt_i_min, alt_i_may)
+        ES_CHAR(es_o, alt_o_min, alt_o_may)
+        ES_CHAR(es_u, alt_u_min, alt_u_may)
+        ES_CHAR(es_ue, alt_ue_min, alt_ue_may)
+        ES_CHAR(es_n, alt_n_min, alt_n_may)
     };
    combos {
         compatible = "zmk,combos";
@@ -151,17 +198,17 @@
             bindings = <
             LAYOUT(
             /*+--------------+--------------+--------------+--------------+--------------+---------+               +---------+               +---------+---------+---------+---------+---------+---------+ */
-            /*| GRAVE        | trans        | trans        | trans        | trans        | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &kp GRAVE,     &trans,        &trans,        &trans,        &trans,        &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*| GRAVE        | ¡            | trans        | trans        | trans        | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
+                &kp GRAVE,     &es_iexcl,     &trans,        &trans,        &trans,        &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
             /*+--------------+--------------+--------------+--------------+--------------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| TILDE        | trans        | trans        | trans        | trans        | trans   |     | trans   | trans   | trans   |     | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &kp TILDE,     &trans,        &trans,        &trans,        &trans,        &trans,         &trans,   &trans,   &trans,         &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*| TILDE        | trans        | trans        | é É          | trans        | trans   |     | trans   | trans   | trans   |     | ü Ü     | ú Ú     | í Í     | ó Ó     | trans   | trans   | */
+                &kp TILDE,     &trans,        &trans,        &es_e,         &trans,        &trans,         &trans,   &trans,   &trans,         &es_ue,   &es_u,    &es_i,    &es_o,    &trans,   &trans,
             /*+--------------+--------------+--------------+--------------+--------------+---------+     +---------+---------+---------+     +---------+---------+---------+---------+---------+---------+ */
-            /*| trans        | GUI/A        | ALT/S        | CTL/D        | SFT/F        | trans   |               | trans   |               | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,        &hm LGUI A,    &hm LALT S,    &hm LCTRL D,   &hm LSHFT F,   &trans,                   &trans,                   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*| trans        | á Á          | trans        | trans        | trans        | trans   |               | trans   |               | - _     | = +     | [ {     | ] }     | trans   | trans   | */
+                &trans,        &es_a,         &trans,        &trans,        &trans,        &trans,                 &trans,                   &kp MINUS, &kp EQUAL, &kp LBKT, &kp RBKT, &trans,   &trans,
             /*+--------------+--------------+--------------+--------------+--------------+---------+     +---------+---------+               +---------+---------+---------+---------+---------+---------+ */
-            /*| trans        | trans        | trans        | trans        | trans        | trans   |     | trans   |                         | trans   | trans   | trans   | trans   | trans   | trans   | */
-                &trans,        &trans,        &trans,        &trans,        &trans,        &trans,         &trans,                             &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+            /*| trans        | trans        | trans        | trans        | trans        | trans   |     | trans   |                         | ñ Ñ     | trans   | trans   | trans   | ¿       | trans   | */
+                &trans,        &trans,        &trans,        &trans,        &trans,        &trans,         &trans,                             &es_n,    &trans,   &trans,   &trans,   &es_iquest, &trans,
             /*+--------------+--------------+--------------+--------------+--------------+---------+     +---------+                         +---------+---------+---------+---------+---------+---------+ */
             /*                              | trans        | trans        | trans        |                                                             | trans   | trans   | trans   | */
                                               &trans,        &trans,        &trans,                                                                      &trans,   &trans,   &trans,
@@ -184,11 +231,11 @@
             /*| trans   | trans   | trans   | trans   | trans   | trans   |                 | trans   |               | trans   | trans        | trans        | trans        | trans        | trans   | */
                 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                     &trans,                   &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
             /*+---------+---------+---------+---------+---------+---------+     +-----------+---------+---------+     +---------+--------------+--------------+--------------+--------------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |     | trans     | trans   | trans   |     | trans   | trans        | trans        | trans        | trans        | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &trans,     &trans,   &trans,         &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
+            /*| trans   | trans   | HOME    | UP      | END     | PG UP   |     | trans     | trans   | trans   |     | trans   | trans        | trans        | trans        | trans        | trans   | */
+                &trans,   &trans,   &kp HOME, &kp UP,   &kp END,  &kp PG_UP,      &trans,     &trans,   &trans,         &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
             /*+---------+---------+---------+---------+---------+---------+     +-----------+---------+---------+     +---------+--------------+--------------+--------------+--------------+---------+ */
-            /*| trans   | trans   | trans   | trans   | trans   | trans   |                 | trans   |               | trans   | SFT/J        | CTL/K        | ALT/L        | GUI/;        | trans   | */
-                &trans,   &trans,   &trans,   &trans,   &trans,   &trans,                     &trans,                   &trans,   &hm RSHFT J,   &hm RCTRL K,   &hm RALT L,    &hm RGUI SEMI, &trans,
+            /*| trans   | trans   | LEFT    | DOWN    | RIGHT   | PG DN   |                 | trans   |               | trans   | trans        | trans        | trans        | trans        | trans   | */
+                &trans,   &trans,   &kp LEFT, &kp DOWN, &kp RIGHT, &kp PG_DN,                 &trans,                   &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
             /*+---------+---------+---------+---------+---------+---------+     +-----------+---------+               +---------+--------------+--------------+--------------+--------------+---------+ */
             /*| trans   | trans   | trans   | trans   | trans   | trans   |     | ZOOM0     |                         | trans   | trans        | trans        | trans        | trans        | trans   | */
                 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,         &kp LC(N0),                           &trans,   &trans,        &trans,        &trans,        &trans,        &trans,
@@ -211,17 +258,17 @@
             bindings = <
             LAYOUT(
             /*+---------+---------+---------+---------+---------+---------+               +---------+               +------------+---------+---------+-----------+---------+---------+ */
-            /*| trans   | F1      | F2      | F3      | F4      | F5      |               | trans   |               | F6         | F7      | F8      | F9        | F10     | trans   | */
-                &trans,   &kp F1,   &kp F2,   &kp F3,   &kp F4,   &kp F5,                   &trans,                   &kp F6,      &kp F7,   &kp F8,   &kp F9,     &kp F10,  &trans,
+            /*| BOOT    | F1      | F2      | F3      | F4      | F5      |               | BT 1    |               | F6         | F7      | F8      | F9        | F10     | BOOT    | */
+                &bootloader, &kp F1, &kp F2,  &kp F3,   &kp F4,   &kp F5,                   &bt BT_SEL 0,             &kp F6,      &kp F7,   &kp F8,   &kp F9,     &kp F10,  &bootloader,
             /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +------------+---------+---------+-----------+---------+---------+ */
-            /*| trans   | RGB TOG | RGB EFF | RGB EFR | SPD UP  | SPD DN  |     | trans   | trans   | trans   |     | F11        | F12     | UP      | trans     | trans   | trans   | */
-                &trans,   &rgb_ug RGB_TOG, &rgb_ug RGB_EFF, &rgb_ug RGB_EFR, &rgb_ug RGB_SPI, &rgb_ug RGB_SPD, &trans,   &trans,   &trans,         &kp F11,     &kp F12,  &kp UP,   &trans,     &trans,   &trans,
+            /*| NUM LK  | RGB TOG | RGB EFF | RGB EFR | SPD UP  | SPD DN  |     | BT 2    | BT 3    | BT 4    |     | F11        | F12     | trans   | trans     | trans   | BT CLR  | */
+                &kp KP_NUM, &rgb_ug RGB_TOG, &rgb_ug RGB_EFF, &rgb_ug RGB_EFR, &rgb_ug RGB_SPI, &rgb_ug RGB_SPD, &bt BT_SEL 1, &bt BT_SEL 2, &bt BT_SEL 3, &kp F11, &kp F12, &trans, &trans, &trans, &bt BT_CLR,
             /*+---------+---------+---------+---------+---------+---------+     +---------+---------+---------+     +------------+---------+---------+-----------+---------+---------+ */
-            /*| trans   | HUE UP  | HUE DN  | SAT UP  | SAT DN  | trans   |               | trans   |               | WIN+TAB    | LEFT    | DOWN    | RIGHT     | trans   | trans   | */
-                &trans,   &rgb_ug RGB_HUI, &rgb_ug RGB_HUD, &rgb_ug RGB_SAI, &rgb_ug RGB_SAD, &trans,                   &trans,                   &kp LG(TAB), &kp LEFT, &kp DOWN, &kp RIGHT,  &trans,   &trans,
+            /*| trans   | HUE UP  | HUE DN  | SAT UP  | SAT DN  | CAPTURA |               | BT 5    |               | WIN+TAB    | trans   | trans   | trans     | trans   | trans   | */
+                &trans,   &rgb_ug RGB_HUI, &rgb_ug RGB_HUD, &rgb_ug RGB_SAI, &rgb_ug RGB_SAD, &kp LG(LS(S)),            &bt BT_SEL 4,             &kp LG(TAB), &trans,   &trans,   &trans,     &trans,   &trans,
             /*+---------+---------+---------+---------+---------+---------+     +---------+---------+               +------------+---------+---------+-----------+---------+---------+ */
-            /*| trans   | BRT UP  | BRT DN  | trans   | trans   | trans   |     | trans   |                         | ESP 1      | ESP 2   | ESP 3   | ESP 4     | trans   | trans   | */
-                &trans,   &rgb_ug RGB_BRI, &rgb_ug RGB_BRD, &trans,   &trans,   &trans,         &trans,                             &esp_msg 1,  &esp_msg 2, &esp_msg 3, &esp_msg 4, &trans, &trans,
+            /*| RESET   | BRT UP  | BRT DN  | PREV    | PLAY    | NEXT    |     | trans   |                         | ESP 1      | ESP 2   | ESP 3   | ESP 4     | USB/BT  | RESET   | */
+                &sys_reset, &rgb_ug RGB_BRI, &rgb_ug RGB_BRD, &kp C_PREV, &kp C_PP, &kp C_NEXT, &trans,                     &esp_msg 1,  &esp_msg 2, &esp_msg 3, &esp_msg 4, &out OUT_TOG, &sys_reset,
             /*+---------+---------+---------+---------+---------+---------+     +---------+                         +------------+---------+---------+-----------+---------+---------+ */
             /*                    | trans   | trans   | trans   |                                                                | trans   | trans   | trans     | */
                                     &trans,   &trans,   &trans,                                                                    &trans,   &trans,   &trans,

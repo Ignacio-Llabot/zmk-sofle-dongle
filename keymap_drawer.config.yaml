@@ -138,6 +138,28 @@ parse_config:
     "&esp_msg 2": ESP 2
     "&esp_msg 3": ESP 3
     "&esp_msg 4": ESP 4
+    # Español (códigos Alt)
+    "&es_a": {t: 'á', s: 'Á'}
+    "&es_e": {t: 'é', s: 'É'}
+    "&es_i": {t: 'í', s: 'Í'}
+    "&es_o": {t: 'ó', s: 'Ó'}
+    "&es_u": {t: 'ú', s: 'Ú'}
+    "&es_ue": {t: 'ü', s: 'Ü'}
+    "&es_n": {t: 'ñ', s: 'Ñ'}
+    "&es_iexcl": '¡'
+    "&es_iquest": '¿'
+    # Top: utilidades
+    "&bootloader": BOOT
+    "&sys_reset": RESET
+    "&bt BT_SEL 0": BT 1
+    "&bt BT_SEL 1": BT 2
+    "&bt BT_SEL 2": BT 3
+    "&bt BT_SEL 3": BT 4
+    "&bt BT_SEL 4": BT 5
+    "&bt BT_CLR": BT CLR
+    "&out OUT_TOG": USB/BT
+    "&kp KP_NUM": NUM LOCK
+    "&kp LG(LS(S))": CAPTURA
     # Home rows
     "&hm LEFT_GUI A":
       tap: 'A'
