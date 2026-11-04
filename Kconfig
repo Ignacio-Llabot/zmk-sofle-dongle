@@ -1,0 +1,12 @@
+config ZMK_BEHAVIOR_ESP_MSG
+    bool "Behavior that broadcasts a message ID over BLE advertising (for an ESP32)"
+    default y
+    depends on DT_HAS_ZMK_BEHAVIOR_ESP_MSG_ENABLED && BT_EXT_ADV
+
+if ZMK_BEHAVIOR_ESP_MSG
+
+config ZMK_BEHAVIOR_ESP_MSG_DURATION_MS
+    int "How long each message is advertised, in ms"
+    default 500
+
+endif

@@ -1,0 +1,1 @@
+target_sources_ifdef(CONFIG_ZMK_BEHAVIOR_ESP_MSG app PRIVATE src/behaviors/behavior_esp_msg.c)

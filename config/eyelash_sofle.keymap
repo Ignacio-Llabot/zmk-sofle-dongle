@@ -90,6 +90,13 @@
             cw-binding = <&kp C_VOL_UP>;
             ccw-binding = <&kp C_VOL_DN>;
         };
+
+        // Mensajes por BLE para el ESP32 (solo hace algo en el dongle)
+        esp_msg: esp_msg {
+            compatible = "zmk,behavior-esp-msg";
+            #binding-cells = <1>;
+            display-name = "ESP32 Msg";
+        };
     };
    combos {
         compatible = "zmk,combos";
@@ -213,8 +220,8 @@
             /*| trans   | HUE UP  | HUE DN  | SAT UP  | SAT DN  | trans   |               | trans   |               | WIN+TAB    | LEFT    | DOWN    | RIGHT     | trans   | trans   | */
                 &trans,   &rgb_ug RGB_HUI, &rgb_ug RGB_HUD, &rgb_ug RGB_SAI, &rgb_ug RGB_SAD, &trans,                   &trans,                   &kp LG(TAB), &kp LEFT, &kp DOWN, &kp RIGHT,  &trans,   &trans,
             /*+---------+---------+---------+---------+---------+---------+     +---------+---------+               +------------+---------+---------+-----------+---------+---------+ */
-            /*| trans   | BRT UP  | BRT DN  | trans   | trans   | trans   |     | trans   |                         | trans      | trans   | trans   | trans     | trans   | trans   | */
-                &trans,   &rgb_ug RGB_BRI, &rgb_ug RGB_BRD, &trans,   &trans,   &trans,         &trans,                             &trans,      &trans,   &trans,   &trans,     &trans,   &trans,
+            /*| trans   | BRT UP  | BRT DN  | trans   | trans   | trans   |     | trans   |                         | ESP 1      | ESP 2   | ESP 3   | ESP 4     | trans   | trans   | */
+                &trans,   &rgb_ug RGB_BRI, &rgb_ug RGB_BRD, &trans,   &trans,   &trans,         &trans,                             &esp_msg 1,  &esp_msg 2, &esp_msg 3, &esp_msg 4, &trans, &trans,
             /*+---------+---------+---------+---------+---------+---------+     +---------+                         +------------+---------+---------+-----------+---------+---------+ */
             /*                    | trans   | trans   | trans   |                                                                | trans   | trans   | trans     | */
                                     &trans,   &trans,   &trans,                                                                    &trans,   &trans,   &trans,
