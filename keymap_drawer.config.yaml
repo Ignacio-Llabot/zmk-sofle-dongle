@@ -133,6 +133,11 @@ parse_config:
     "&ltq 1 DELETE":
       tap: $$mdi:backspace-reverse-outline$$
       hold: $$mdi:navigation-variant$$
+    # ESP32
+    "&esp_msg 1": ESP 1
+    "&esp_msg 2": ESP 2
+    "&esp_msg 3": ESP 3
+    "&esp_msg 4": ESP 4
     # Home rows
     "&hm LEFT_GUI A":
       tap: 'A'

@@ -1,0 +1,5 @@
+description: Broadcast a message ID (0-255) over BLE advertising so an ESP32 can receive it
+
+compatible: "zmk,behavior-esp-msg"
+
+include: one_param.yaml
